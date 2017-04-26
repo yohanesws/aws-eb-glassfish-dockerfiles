@@ -7,12 +7,18 @@ PID_FILE=$GLASSFISH_HOME/glassfish/domains/domain1/config/pid
 # zip app back into a bundle and let Glassfish handle it
 
 if ! [ -z $GLASSFISH_LIB_FOLDER ];then
+  cp $GLASSFISH_LIB_FOLDER/* $GLASSFISH_HOME/glassfish/lib
   cp $GLASSFISH_LIB_FOLDER/* $GLASSFISH_HOME/glassfish/domains/domain1/lib
+fi
+
+if ! [ -z $GLASSFISH_MODULES ];then
+  cp $GLASSFISH_MODULES/* $GLASSFISH_HOME/glassfish/modules
 fi
 
 if ! [ -z $GLASSFISH_CONFIG ];then
   cp $GLASSFISH_CONFIG/* $GLASSFISH_HOME/glassfish/domains/domain1/config
 fi
+
 
 asadmin start-domain
 # asadmin deploy --contextroot / --name current-app /var/app.zip
